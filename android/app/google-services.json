@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "428351020300",
+    "project_id": "pal48-88d5f",
+    "storage_bucket": "pal48-88d5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428351020300:android:062540784763db19d47d29",
+        "android_client_info": {
+          "package_name": "com.ethar.pal48"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428351020300-epalkqh5f668b2uciigikg1jvuvobvak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9ZVP0QVyVXTBcgogiVXHFOc8jMWmwyEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428351020300-epalkqh5f668b2uciigikg1jvuvobvak.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "428351020300-meg6ric84kgheiuhgshag61gp70klsk0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ethar.pal48"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
