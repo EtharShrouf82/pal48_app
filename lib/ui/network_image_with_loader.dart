@@ -12,11 +12,11 @@ class NetworkImageWithLoader extends StatelessWidget {
 
   const NetworkImageWithLoader(
     this.src, {
-    Key? key,
+    super.key,
     this.fit = BoxFit.cover,
     this.zoom = false,
     this.radius = defaultPadding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

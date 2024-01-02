@@ -4,7 +4,7 @@ import 'package:pal48/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class ChangeTheme extends StatelessWidget {
-  const ChangeTheme({Key? key}) : super(key: key);
+  const ChangeTheme({super.key});
 
   @override
   Widget build(BuildContext context) {

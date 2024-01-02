@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pal48/components/notification_card.dart';
+import 'package:pal48/helpers/get_locale.dart';
 import 'package:pal48/providers/notification_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants.dart';
 
 class NotificationsScreen extends StatelessWidget {
-  const NotificationsScreen({Key? key}) : super(key: key);
+  const NotificationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class NotificationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "الإشعارات",
+          translation(context).notifications,
           style: kPragraphTextStyle.copyWith(
             color: Theme.of(context).textTheme.bodyLarge!.color,
           ),

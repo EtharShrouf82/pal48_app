@@ -7,10 +7,10 @@ class MultiSelect extends StatelessWidget {
   final dynamic onSaved;
 
   const MultiSelect({
-    Key? key,
+    super.key,
     required this.initialValue,
     required this.onSaved,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

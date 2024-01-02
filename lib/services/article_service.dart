@@ -14,6 +14,7 @@ import 'package:pal48/models/village_model.dart';
 class ArticleService {
   Future fetchStory() async {
     await Api.getSegmentValue();
+    print(Api.getStory());
     return http.get(Uri.parse(Api.getStory())).then((http.Response response) {
       final int statusCode = response.statusCode;
       if (statusCode == 200) {

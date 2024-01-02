@@ -5,8 +5,13 @@ class AddCommentProvider extends ChangeNotifier {
 
   bool isCommentSent = false;
 
-  changeLoadingStatus() {
-    isCommentSent = !isCommentSent;
+  inSendLoading() {
+    isCommentSent = true;
+    notifyListeners();
+  }
+
+  commentSent() {
+    isCommentSent = false;
     notifyListeners();
   }
 

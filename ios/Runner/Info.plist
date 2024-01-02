@@ -61,5 +61,13 @@
 	<false/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Need microphone access for uploading audio</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+    <string>Your location is required for Open Google maps benefits for you</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Your location is required for Open Google maps benefits for you</string>
+	<key>FLTEnableImpeller</key>
+	<false />
+	<!-- <key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-################~##########</string> -->
 </dict>
 </plist>

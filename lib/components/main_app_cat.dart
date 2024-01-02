@@ -17,11 +17,11 @@ class MainAppCat extends StatelessWidget {
   final ArticleProvider articleProvider;
 
   const MainAppCat({
-    Key? key,
+    super.key,
     required this.img,
     required this.type,
     required this.articleProvider,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

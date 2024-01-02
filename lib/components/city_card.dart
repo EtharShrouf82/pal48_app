@@ -10,13 +10,13 @@ class CityCards extends StatelessWidget {
   final Color color;
 
   const CityCards({
-    Key? key,
+    super.key,
     required this.id,
     required this.img,
     required this.map,
     required this.title,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

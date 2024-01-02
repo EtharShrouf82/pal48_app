@@ -8,6 +8,7 @@ import 'package:pal48/models/sub_nakba_model.dart';
 class NakbaService {
   Future fetchNakbaMainCats() async {
     await Api.getSegmentValue();
+    print(Api.getMainNakbaCat());
     return http
         .get(Uri.parse(Api.getMainNakbaCat()))
         .then((http.Response response) {

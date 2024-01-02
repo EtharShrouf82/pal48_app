@@ -3,11 +3,10 @@ import 'package:pal48/Ui/network_image_with_loader.dart';
 
 class BannerM extends StatelessWidget {
   const BannerM(
-      {Key? key,
+      {super.key,
       required this.image,
       required this.press,
-      required this.children})
-      : super(key: key);
+      required this.children});
 
   final String image;
   final VoidCallback press;

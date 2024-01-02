@@ -6,19 +6,21 @@ import '../../../constants/constants.dart';
 
 class CommentBox extends StatelessWidget {
   const CommentBox({
-    Key? key,
+    super.key,
     this.name,
+    this.reply,
     required this.comment,
     required this.time,
-  }) : super(key: key);
+    required this.updatedAt,
+  });
 
-  final String? name;
-  final String comment, time;
+  final String? name, reply;
+  final String comment, time, updatedAt;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: defaultPadding),
+      margin: const EdgeInsets.only(bottom: defaultPadding * 2),
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
         color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.05),
@@ -76,7 +78,51 @@ class CommentBox extends StatelessWidget {
             style: kPragraphTextStyle.copyWith(
               color: Theme.of(context).textTheme.bodyLarge!.color,
             ),
-          )
+          ),
+          reply != null
+              ? Column(
+                  children: [
+                    const Divider(),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .color!
+                            .withOpacity(0.07),
+                        border: const Border(
+                          right: BorderSide(color: primaryColor, width: 2.0),
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(width: defaultPadding / 2),
+                              Text(
+                                'الإدارة',
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              const Spacer(),
+                              Text(
+                                updatedAt,
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            reply!,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              : const SizedBox(),
         ],
       ),
     );

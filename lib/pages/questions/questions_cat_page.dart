@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pal48/Api/Api.dart';
 import 'package:pal48/components/question_cat_card.dart';
 import 'package:pal48/constants/constants.dart';
-import 'package:pal48/providers/question_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:pal48/exports/exports.dart';
 import 'package:share_plus/share_plus.dart';
 
 class QuestionCatPage extends StatelessWidget {
@@ -20,7 +18,7 @@ class QuestionCatPage extends StatelessWidget {
                 slivers: [
                   SliverAppBar(
                     title: Text(
-                      "إختبر معلوماتك",
+                      translation(context).quiz,
                       style: kHeadingTextStyle.copyWith(
                         color: Theme.of(context).iconTheme.color,
                       ),

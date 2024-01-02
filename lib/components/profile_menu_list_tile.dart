@@ -5,12 +5,12 @@ import 'package:pal48/constants/constants.dart';
 
 class ProfileMenuListTile extends StatelessWidget {
   const ProfileMenuListTile({
-    Key? key,
+    super.key,
     required this.text,
     required this.svgSrc,
     required this.press,
     this.isShowDivider = true,
-  }) : super(key: key);
+  });
 
   final String text, svgSrc;
   final VoidCallback press;

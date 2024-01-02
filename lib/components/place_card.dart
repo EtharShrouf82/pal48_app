@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:pal48/Ui/network_image_with_loader.dart';
+import 'package:pal48/exports/exports.dart';
 import '../Api/Api.dart';
 import '../constants/constants.dart';
 
@@ -9,6 +9,7 @@ class PlaceCard extends StatelessWidget {
   final String city;
   final int id;
   final List? images;
+  final List? attachments;
   final String description;
 
   const PlaceCard({
@@ -18,18 +19,23 @@ class PlaceCard extends StatelessWidget {
     required this.id,
     required this.city,
     required this.images,
+    required this.attachments,
     required this.description,
   });
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
+        Provider.of<ArticleProvider>(context, listen: false).getComments(
+          id,
+        );
         Navigator.pushNamed(context, '/details', arguments: {
           'title': title,
           'id': id,
           'img': img,
           'images': images,
           'desc': description,
+          'attachments': attachments,
         });
       },
       style: OutlinedButton.styleFrom(

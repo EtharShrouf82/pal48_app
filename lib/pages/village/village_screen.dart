@@ -4,6 +4,7 @@ import 'package:pal48/Api/api.dart';
 import 'package:pal48/components/page_appbar.dart';
 import 'package:pal48/components/village_card.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/helpers/get_locale.dart';
 import 'package:pal48/pages/village/components/map_img.dart';
 import 'package:pal48/providers/village_provider.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,8 @@ class VillageScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: PageAppBar(
-          title: 'قرى $title المهجرة ( ${villageProvider.total} )',
+          title:
+              '${translation(context).village} $title ( ${villageProvider.total} )',
           share: '${Api.url}/villages/$id',
           search: true,
           follow: 5,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pal48/components/drawer_items.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/helpers/get_locale.dart';
 import 'package:pal48/pages/about/about_page.dart';
 import 'package:pal48/providers/article_provider.dart';
 import 'package:pal48/providers/bottom_nav_provider.dart';
@@ -61,7 +62,7 @@ class EntryPoint extends StatelessWidget {
         // leadingWidth: 0,
         centerTitle: false,
         title: Text(
-          'فلسطيننا',
+          translation(context).palestine,
           style: kHeadingTextStyle.copyWith(
             color: Theme.of(context).textTheme.bodyLarge!.color,
           ),
@@ -125,18 +126,18 @@ class EntryPoint extends StatelessWidget {
             BottomNavigationBarItem(
               icon: svgIcon("assets/svg/home.svg"),
               activeIcon: svgIcon("assets/svg/home.svg", color: primaryColor),
-              label: "الرئيسية",
+              label: translation(context).home,
             ),
             BottomNavigationBarItem(
               icon: svgIcon("assets/svg/Mylocation.svg"),
               activeIcon:
                   svgIcon("assets/svg/Mylocation.svg", color: primaryColor),
-              label: "خارطة فلسطين",
+              label: translation(context).palestineMap,
             ),
             BottomNavigationBarItem(
               icon: svgIcon("assets/svg/FAQ.svg"),
               activeIcon: svgIcon("assets/svg/FAQ.svg", color: primaryColor),
-              label: "من نحن",
+              label: translation(context).about,
             ),
           ],
         ),

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pal48/Api/Api.dart';
 import 'package:pal48/Ui/network_image_with_loader.dart';
 import 'package:pal48/components/info_line_card.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/exports/exports.dart';
 import 'package:pal48/models/camp_model.dart';
 
 class CampCard extends StatelessWidget {
@@ -15,9 +15,13 @@ class CampCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
+        Provider.of<ArticleProvider>(context, listen: false).getComments(
+          campModel.id,
+        );
         Navigator.pushNamed(context, '/details', arguments: {
           'id': campModel.id,
           'images': campModel.images,
+          'attachments': campModel.attachments,
           'img': campModel.img,
           'desc': campModel.desc,
           'title': campModel.title,

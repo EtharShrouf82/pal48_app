@@ -7,6 +7,7 @@ import 'package:pal48/components/html_card.dart';
 import 'package:pal48/components/page_appbar.dart';
 import 'package:pal48/components/square_card.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/helpers/get_locale.dart';
 import 'package:pal48/providers/aqsa_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -28,12 +29,12 @@ class AqsaMoreDetails extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: PageAppBar(
-          title: 'المسجد الأقصى - $title',
+          title: '${translation(context).alaqsa}- $title',
           share: '${Api.url}/aqsa/$id',
         ),
       ),
       body: SafeArea(
-        child: aqsaProvider.isDataLoaded
+        child: aqsaProvider.dataLoaded
             ? CustomScrollView(
                 slivers: [
                   SliverPadding(

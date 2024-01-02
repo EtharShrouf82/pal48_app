@@ -1,16 +1,13 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
-import 'package:flutter/material.dart';
 import 'package:pal48/Api/Api.dart';
 import 'package:pal48/components/page_appbar.dart';
 import 'package:pal48/components/text_form_field.dart';
 import 'package:pal48/constants/constants.dart';
-import 'package:pal48/providers/contact_us_provider.dart';
-import 'package:pal48/providers/device_token_provider.dart';
+import 'package:pal48/exports/exports.dart';
 import 'package:pal48/services/add_message_service.dart';
-import 'package:provider/provider.dart';
 
 class ContactScreen extends StatelessWidget {
-  const ContactScreen({Key? key}) : super(key: key);
+  const ContactScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +19,7 @@ class ContactScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: PageAppBar(
-          title: 'إتصل بنا',
+          title: translation(context).contact,
           share: '${Api.url}/app',
         ),
       ),
@@ -43,7 +40,7 @@ class ContactScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          'لنبقى على تواصل',
+                          translation(context).lettouch,
                           style: kHeadingTextStyle.copyWith(
                             color: Theme.of(context).textTheme.bodyLarge!.color,
                           ),
@@ -58,7 +55,7 @@ class ContactScreen extends StatelessWidget {
                           validationMessage: '',
                           maxLines: 1,
                           prefixIcon: Icons.person,
-                          labelTxt: 'الإسم - إختياري',
+                          labelTxt: translation(context).optionalName,
                           errorMsg: '',
                           textAlign: TextAlign.right,
                         ),
@@ -72,7 +69,7 @@ class ContactScreen extends StatelessWidget {
                           validationMessage: '',
                           maxLines: 1,
                           prefixIcon: Icons.email,
-                          labelTxt: 'البريد الإلكتروني - إختياري',
+                          labelTxt: translation(context).optionalEmail,
                           errorMsg: '',
                           textAlign: TextAlign.left,
                         ),
@@ -84,11 +81,11 @@ class ContactScreen extends StatelessWidget {
                           textInputType: TextInputType.text,
                           validationNumber: 20,
                           validationMessage:
-                              'نص الرسالة يجب على الأقل أن يحتوي على 30 حرف',
+                              translation(context).messageAtLeast,
                           maxLines: 4,
                           prefixIcon: Icons.message,
-                          labelTxt: 'نص الرسالة',
-                          errorMsg: 'الرجاء إدخال نص الرسالة',
+                          labelTxt: translation(context).message,
+                          errorMsg: translation(context).pleaseInsertMsg,
                           textAlign: TextAlign.right,
                         ),
                         const SizedBox(
@@ -114,7 +111,7 @@ class ContactScreen extends StatelessWidget {
                                       contactUsProvider,
                                     );
                                   },
-                                  child: const Text("إضافة التعليق"),
+                                  child: Text(translation(context).sendMsg),
                                 ),
                         ),
                         const SizedBox(
@@ -155,8 +152,8 @@ class ContactScreen extends StatelessWidget {
             barrierDismissible: false,
             context: context,
             artDialogArgs: ArtDialogArgs(
-              title: "تم إرسال الرسالة بنجاح",
-              confirmButtonText: "إغلاق",
+              title: translation(context).messageSent,
+              confirmButtonText: translation(context).close,
               type: ArtSweetAlertType.success,
             ),
           );

@@ -1,3 +1,4 @@
+import 'package:pal48/models/attachment_model.dart';
 import 'package:pal48/models/photo_model.dart';
 
 class MasscareModel {
@@ -5,6 +6,7 @@ class MasscareModel {
   final String title, desc;
   final String? result, inDate, img;
   final List<PhotoModel>? images;
+  final List<AttachmentModel>? attachments;
   MasscareModel({
     required this.id,
     required this.title,
@@ -13,6 +15,7 @@ class MasscareModel {
     this.result,
     this.inDate,
     this.img,
+    this.attachments,
   });
   factory MasscareModel.fromJson(Map<String, dynamic> jsonRes) {
     List<PhotoModel> images = List<PhotoModel>.from(
@@ -20,7 +23,11 @@ class MasscareModel {
         (model) => PhotoModel.fromJson(model),
       ),
     );
-
+    List<AttachmentModel> attachments = List<AttachmentModel>.from(
+      jsonRes['attachments'].map(
+        (model) => AttachmentModel.fromJson(model),
+      ),
+    );
     return MasscareModel(
       id: jsonRes['id'] as int,
       title: jsonRes['title'] as String,
@@ -29,6 +36,7 @@ class MasscareModel {
       inDate: jsonRes['in_date'] as String?,
       result: jsonRes['result'] as String?,
       images: images,
+      attachments: attachments,
     );
   }
 }

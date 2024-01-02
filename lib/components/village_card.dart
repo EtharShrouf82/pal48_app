@@ -23,6 +23,7 @@ class VillageCard extends StatelessWidget {
         Navigator.pushNamed(context, '/details', arguments: {
           'id': villageModel.id,
           'images': villageModel.images,
+          'attachments': villageModel.attachments,
           'img': villageModel.img,
           'desc': villageModel.desc,
           'title': villageModel.title,

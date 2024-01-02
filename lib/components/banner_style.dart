@@ -5,12 +5,12 @@ import 'package:pal48/constants/constants.dart';
 
 class BannerMStyle2 extends StatelessWidget {
   const BannerMStyle2({
-    Key? key,
+    super.key,
     required this.image,
     required this.title,
     required this.press,
     this.subtitle,
-  }) : super(key: key);
+  });
   final String image;
   final String title;
   final String? subtitle;

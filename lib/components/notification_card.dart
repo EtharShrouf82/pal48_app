@@ -10,12 +10,12 @@ import '../../../constants/constants.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.time,
     required this.screen,
     this.pageId,
-  }) : super(key: key);
+  });
 
   final String title, time;
   final int? pageId;

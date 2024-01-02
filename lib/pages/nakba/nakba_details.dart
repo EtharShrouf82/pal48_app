@@ -70,44 +70,13 @@ class NakbaDetails extends StatelessWidget {
                                 ))
                             .toList() // all the children is making an error
                         )
-                    : const SizedBox(),
+                    : const Center(
+                        child: CircularProgressIndicator(
+                          color: primaryColor,
+                        ),
+                      ),
               ),
             ),
-            // ProductListTile(
-            //   title: "إضافة تقييم",
-            //   svgSrc: "assets/icons/Chat-add.svg",
-            //   isShowBottomBorder: true,
-            //   press: () {
-            //     showRatingDialog(product.id.toString(), context, formKey);
-            //   },
-            // ),
-            // SliverPadding(
-            //   padding: const EdgeInsets.all(defaultPadding),
-            //   sliver: SliverToBoxAdapter(
-            //     child: Text(
-            //       "قد يعجبك أيضاً.",
-            //       style: Theme.of(context).textTheme.titleSmall!,
-            //     ),
-            //   ),
-            // ),
-            // SliverToBoxAdapter(
-            //   child: SizedBox(
-            //     height: 260,
-            //     child: ListView.builder(
-            //       scrollDirection: Axis.horizontal,
-            //       itemCount: productProvider.similarProductArray.length,
-            //       itemBuilder: (context, index) => Padding(
-            //         padding: EdgeInsets.only(
-            //             left: defaultPadding,
-            //             right: index == 4 ? defaultPadding : 0),
-            //         child: ProductCard(
-            //           productProvider: productProvider,
-            //           product: productProvider.similarProductArray[index],
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             const SliverToBoxAdapter(
               child: SizedBox(height: defaultPadding),
             )

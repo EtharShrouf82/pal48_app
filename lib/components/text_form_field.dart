@@ -12,9 +12,10 @@ class TextFormFieldUi extends StatelessWidget {
   final String errorMsg;
   final TextAlign textAlign;
   final Color? filledColor;
+  final int? maxLength;
 
   const TextFormFieldUi({
-    Key? key,
+    super.key,
     required this.validationNumber,
     required this.validationMessage,
     required this.controller,
@@ -25,13 +26,15 @@ class TextFormFieldUi extends StatelessWidget {
     required this.errorMsg,
     required this.textAlign,
     this.filledColor,
-  }) : super(key: key);
+    this.maxLength,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: maxLines * 44.0,
       child: TextFormField(
+        maxLength: maxLength,
         controller: controller,
         keyboardType: textInputType,
         style: kSubHeadTextStyle.copyWith(

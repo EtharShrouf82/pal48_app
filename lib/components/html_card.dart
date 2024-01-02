@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:pal48/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HtmlView extends StatelessWidget {
   final String? txt;
 
   const HtmlView({
-    Key? key,
+    super.key,
     required this.txt,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,17 @@ $txt
         fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize! * 1.2,
         color: Provider.of<AppThemeProvider>(context).kgrayColor,
       ),
+      onTapUrl: (url) async {
+        if (!await launchUrl(Uri.parse(url))) {
+          throw Exception('Could not launch $url');
+        }
+        return false;
+      },
+
+      // select the render mode for HTML body
+      // by default, a simple `Column` is rendered
+      // consider using `ListView` or `SliverList` for better performance
+      renderMode: RenderMode.column,
     );
   }
 }

@@ -57,10 +57,13 @@ class _SliderCarouselState extends State<SliderCarousel> {
         image: Api.url + e.img!,
         title: e.title,
         press: () {
+          Provider.of<ArticleProvider>(context, listen: false)
+              .getComments(e.id);
           Navigator.pushNamed(context, '/details', arguments: {
             'id': e.id,
             'img': e.img,
             'images': e.images,
+            'attachments': e.attachments,
             'desc': e.description,
             'title': e.title,
           });

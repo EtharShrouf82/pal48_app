@@ -10,6 +10,7 @@ class TitleCard extends StatelessWidget {
   final String title;
   final String? description;
   final String goToPage;
+  final List? images;
 
   const TitleCard({
     super.key,
@@ -17,6 +18,7 @@ class TitleCard extends StatelessWidget {
     required this.title,
     required this.goToPage,
     this.description,
+    this.images,
   });
 
   @override
@@ -46,6 +48,7 @@ class TitleCard extends StatelessWidget {
             'title': title,
             'id': id,
             'description': description,
+            'images': images,
           });
         },
         child: Row(

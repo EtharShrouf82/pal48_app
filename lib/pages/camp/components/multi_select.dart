@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/exports/exports.dart';
 
 class MultiCampSelect extends StatelessWidget {
   final List? initialValue;
   final dynamic onSaved;
 
   const MultiCampSelect({
-    Key? key,
+    super.key,
     required this.initialValue,
     required this.onSaved,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,33 +29,33 @@ class MultiCampSelect extends StatelessWidget {
           Radius.circular(defaultPadding),
         ),
       ),
-      title: const Text(
-        "تصنيف حسب الدولة",
-        style: TextStyle(fontSize: 16),
+      title: Text(
+        translation(context).filterByCountry,
+        style: const TextStyle(fontSize: 16),
       ),
-      dataSource: const [
+      dataSource: [
         {
-          "display": "فلسطين",
+          "display": translation(context).palestine,
           "value": 1,
         },
         {
-          "display": "الأردن",
+          "display": translation(context).jordan,
           "value": 2,
         },
         {
-          "display": "سوريا",
+          "display": translation(context).syria,
           "value": 3,
         },
         {
-          "display": "لبنان",
+          "display": translation(context).lebanon,
           "value": 4,
         }
       ],
       textField: 'display',
       valueField: 'value',
-      okButtonLabel: 'فرز',
-      cancelButtonLabel: 'إلغاء',
-      hintWidget: const Text('بالإمكان إختيار أكثر من دولة'),
+      okButtonLabel: translation(context).filter,
+      cancelButtonLabel: translation(context).cancel,
+      hintWidget: Text(translation(context).moreCountry),
       initialValue: initialValue,
       onSaved: onSaved,
     );

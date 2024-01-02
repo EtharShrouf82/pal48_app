@@ -4,6 +4,10 @@ import 'package:pal48/Helpers/open_link.dart';
 import 'package:pal48/components/profile_menu_list_tile.dart';
 import 'package:pal48/components/social_icon.dart';
 import 'package:pal48/helpers/change_theme.dart';
+import 'package:pal48/helpers/get_locale.dart';
+import 'package:pal48/helpers/language.dart';
+import 'package:pal48/main.dart';
+import 'package:pal48/providers/bottom_nav_provider.dart';
 import 'package:pal48/providers/contact_us_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -11,7 +15,7 @@ import 'package:share_plus/share_plus.dart';
 import '../constants/constants.dart';
 
 class DrawerItems extends StatelessWidget {
-  const DrawerItems({Key? key}) : super(key: key);
+  const DrawerItems({super.key});
 
   get kPrimaryColor => null;
 
@@ -54,14 +58,14 @@ class DrawerItems extends StatelessWidget {
                   ),
                 ),
                 ProfileMenuListTile(
-                  text: "إتصل بنا",
+                  text: translation(context).contactUs,
                   svgSrc: "assets/svg/Help.svg",
                   press: () {
                     Navigator.pushNamed(context, '/contact');
                   },
                 ),
                 ProfileMenuListTile(
-                  text: "سياسة الخصوصية",
+                  text: translation(context).privacyScreen,
                   svgSrc: "assets/svg/Standard.svg",
                   press: () {
                     contactProvider.privaceData.isEmpty
@@ -71,7 +75,7 @@ class DrawerItems extends StatelessWidget {
                   },
                 ),
                 ProfileMenuListTile(
-                  text: "سياسة الإستخدام",
+                  text: translation(context).terms,
                   svgSrc: "assets/svg/info.svg",
                   press: () {
                     contactProvider.privaceData.isEmpty
@@ -81,7 +85,7 @@ class DrawerItems extends StatelessWidget {
                   },
                 ),
                 ProfileMenuListTile(
-                  text: 'أرسل التطبيق لصديق',
+                  text: translation(context).shareApp,
                   svgSrc: "assets/svg/Send.svg",
                   press: () {
                     final Size size = MediaQuery.of(context).size;
@@ -97,6 +101,21 @@ class DrawerItems extends StatelessWidget {
                     width: 80.0,
                     child: ChangeTheme(),
                   ),
+                ),
+                Row(
+                  children: Language.languageList()
+                      .where((e) => e.languageCode != lang)
+                      .map((e) {
+                    return TextButton(
+                        onPressed: () async {
+                          Provider.of<BottomBarProvider>(context, listen: false)
+                              .changeLang(e.languageCode);
+                          Locale locale = await setLocale(e.languageCode);
+                          // ignore: use_build_context_synchronously
+                          MyApp.setLocale(context, locale);
+                        },
+                        child: Text(e.name));
+                  }).toList(),
                 ),
               ],
             ),
@@ -117,7 +136,7 @@ class DrawerItems extends StatelessWidget {
               openLink('https://etharshrouf.com');
             },
             child: Text(
-              'برمجة وتطوير : إيثار شروف',
+              translation(context).developedBy,
               style: kSubHeadTextStyle.copyWith(
                 color: Theme.of(context).textTheme.bodyLarge!.color,
               ),

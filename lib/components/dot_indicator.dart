@@ -3,11 +3,11 @@ import 'package:pal48/constants/constants.dart';
 
 class DotIndicator extends StatelessWidget {
   const DotIndicator({
-    Key? key,
+    super.key,
     this.isActive = false,
     this.inActiveColor,
     this.activeColor = primaryColor,
-  }) : super(key: key);
+  });
 
   final bool isActive;
 

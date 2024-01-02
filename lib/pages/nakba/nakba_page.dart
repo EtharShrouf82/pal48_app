@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:pal48/components/square_card.dart';
 import 'package:pal48/constants/constants.dart';
-import 'package:pal48/providers/nakba_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:pal48/exports/exports.dart';
 
 class NakbaPage extends StatelessWidget {
   const NakbaPage({super.key});
@@ -13,7 +11,7 @@ class NakbaPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-        'النكبة الفلسطينية',
+        translation(context).palestinianNakba,
         style: kHeadingTextStyle.copyWith(
           color: Theme.of(context).textTheme.bodyLarge!.color,
         ),

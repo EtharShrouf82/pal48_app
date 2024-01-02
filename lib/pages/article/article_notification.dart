@@ -3,8 +3,11 @@ import 'package:pal48/Api/Api.dart';
 import 'package:pal48/components/add_review.dart';
 import 'package:pal48/components/article_images.dart';
 import 'package:pal48/components/article_info.dart';
+import 'package:pal48/components/download_button.dart';
 import 'package:pal48/components/video_player.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/helpers/get_locale.dart';
+import 'package:pal48/helpers/open_link.dart';
 import 'package:pal48/models/article_model.dart';
 import 'package:pal48/pages/article/components/article_details_appbar.dart';
 import 'package:pal48/services/article_service.dart';
@@ -38,6 +41,18 @@ class ArticleNotification extends StatelessWidget {
                   const SliverToBoxAdapter(
                     child: SizedBox(height: defaultPadding),
                   ),
+                  snapshot.data!.attachments!.isNotEmpty
+                      ? SliverToBoxAdapter(
+                          child: Column(
+                            children: snapshot.data!.attachments!.map((e) {
+                              return DownloadButton(
+                                url: Api.url + e.filename,
+                                desc: e.desc ?? snapshot.data!.title,
+                              );
+                            }).toList(),
+                          ),
+                        )
+                      : const SliverToBoxAdapter(child: SizedBox()),
                   snapshot.data!.images!.isNotEmpty
                       ? Directionality(
                           textDirection: TextDirection.ltr,
@@ -79,8 +94,8 @@ class ArticleNotification extends StatelessWidget {
                     child: ReviewForm(
                       model: 'article',
                       id: id,
-                      comment: 'التعليق',
-                      title: 'شاركنا برأيك',
+                      comment: translation(context).comment,
+                      title: translation(context).shareYourOpinion,
                       onPressed: () {},
                     ),
                   ),

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pal48/Api/Api.dart';
 import 'package:pal48/Ui/network_image_with_loader.dart';
 import 'package:pal48/components/info_line_card.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/exports/exports.dart';
 import 'package:pal48/models/masscare_model.dart';
 
 class MassacreCard extends StatelessWidget {
@@ -17,11 +17,14 @@ class MassacreCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: defaultPadding),
       child: OutlinedButton(
         onPressed: () {
+          Provider.of<ArticleProvider>(context, listen: false)
+              .getComments(masscareModel.id);
           Navigator.pushNamed(context, '/details', arguments: {
             'title': masscareModel.title,
             'id': masscareModel.id,
             'img': masscareModel.img,
             'images': masscareModel.images,
+            'attachments': masscareModel.attachments,
             'desc': masscareModel.desc,
           });
         },

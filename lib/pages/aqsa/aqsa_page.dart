@@ -4,6 +4,7 @@ import 'package:pal48/Api/api.dart';
 import 'package:pal48/components/page_appbar.dart';
 import 'package:pal48/components/title_card.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/helpers/get_locale.dart';
 import 'package:pal48/helpers/open_link.dart';
 import 'package:pal48/providers/aqsa_provider.dart';
 import 'package:provider/provider.dart';
@@ -13,17 +14,17 @@ class AqsaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final aqsaProvider = Provider.of<AqsaProvider>(context, listen: true);
+    final aqsaProvider = Provider.of<AqsaProvider>(context);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: PageAppBar(
-          title: 'المسجد الأقصى',
+          title: translation(context).alaqsa,
           share: '${Api.url}/aqsa',
         ),
       ),
       body: SafeArea(
-        child: aqsaProvider.isDataLoaded
+        child: aqsaProvider.dataLoaded
             ? CustomScrollView(
                 slivers: [
                   SliverPadding(
@@ -31,7 +32,7 @@ class AqsaPage extends StatelessWidget {
                     sliver: SliverToBoxAdapter(
                       child: Center(
                         child: Text(
-                          'شاهد على تاريخ، يمتد لألاف السنين',
+                          translation(context).alaqsaShahed,
                           style: kHeadingTextStyle.copyWith(
                             color: Theme.of(context).textTheme.bodyLarge!.color,
                           ),
@@ -66,7 +67,7 @@ class AqsaPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SvgPicture.asset('assets/svg/aqsa_svg.svg'),
-                            const Text('الخارطة التفاعلية للمسجد الأقصى')
+                            Text(translation(context).alaqsaInteractive)
                           ],
                         ),
                       ),

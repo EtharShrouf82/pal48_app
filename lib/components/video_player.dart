@@ -13,13 +13,13 @@ class VideoPlayerSquare extends StatefulWidget {
   final bool withLink;
 
   const VideoPlayerSquare({
-    Key? key,
+    super.key,
     required this.url,
     this.description,
     required this.id,
     this.imageableId,
     this.withLink = false,
-  }) : super(key: key);
+  });
   @override
   VideoPlayerSquareState createState() => VideoPlayerSquareState();
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_timeline_calendar/timeline/flutter_timeline_calendar.dart';
@@ -6,9 +5,8 @@ import 'package:flutter_timeline_calendar/timeline/provider/instance_provider.da
 import 'package:pal48/Api/Api.dart';
 import 'package:pal48/components/page_appbar.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/exports/exports.dart';
 import 'package:pal48/models/event_model.dart';
-import 'package:pal48/providers/article_provider.dart';
-import 'package:provider/provider.dart';
 
 class EventCalendar extends StatefulWidget {
   const EventCalendar({super.key});
@@ -36,7 +34,7 @@ class _EventCalendarState extends State<EventCalendar> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: PageAppBar(
-          title: 'أحداث و تواريخ',
+          title: translation(context).eventsDates,
           share: '${Api.url}/app',
         ),
       ),
@@ -91,6 +89,9 @@ class _EventCalendarState extends State<EventCalendar> {
                                     ),
                                   ),
                                   onPressed: () {
+                                    articleProvider.getComments(
+                                      articleProvider.eventsModel[index].id,
+                                    );
                                     Navigator.pushNamed(context, '/details',
                                         arguments: {
                                           'id': articleProvider
@@ -99,6 +100,8 @@ class _EventCalendarState extends State<EventCalendar> {
                                               .eventsModel[index].img,
                                           'images': articleProvider
                                               .eventsModel[index].images,
+                                          'attachments': articleProvider
+                                              .eventsModel[index].attachments,
                                           'desc': articleProvider
                                               .eventsModel[index].description,
                                           'title': articleProvider
@@ -137,8 +140,8 @@ class _EventCalendarState extends State<EventCalendar> {
                         }),
                   ),
                 )
-              : const Center(
-                  child: Text('لا يوجد أحداث تم إضافتها في هذا التاريخ'),
+              : Center(
+                  child: Text(translation(context).noEvent),
                 ),
     );
   }
@@ -146,7 +149,7 @@ class _EventCalendarState extends State<EventCalendar> {
   getTitle(EventModel index) {
     var title = '';
     if (index.type == 5) {
-      title = 'تهجير قرية  ${index.title}';
+      title = ' ${translation(context).displacement} ${index.title}';
     } else {
       title = index.title;
     }

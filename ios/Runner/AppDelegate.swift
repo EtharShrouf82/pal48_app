@@ -11,7 +11,7 @@ import GoogleMaps
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     FirebaseApp.configure()
-    GMSServices.provideAPIKey("AIzaSyBAuFxcNsfHWmbEm2RgYgpNXoGLI8RTw9I")
+    GMSServices.provideAPIKey("AIzaSyBAuFxcNsfHWmbEm2RgYgpNXoGLI8RTw9I?language=ar")
     GeneratedPluginRegistrant.register(with: self)
     if #available(iOS 10.0, *) {
        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate

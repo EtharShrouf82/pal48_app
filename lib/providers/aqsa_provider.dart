@@ -4,28 +4,29 @@ import 'package:pal48/models/aqsa/aqsa_sub_model.dart';
 import 'package:pal48/services/aqsa_service.dart';
 
 class AqsaProvider extends ChangeNotifier {
-  bool isDataLoaded = false;
+  bool dataLoaded = false;
 
   List<AqsaModel> aqsaModel = [];
   Map<int, List<AqsaSubModel>> subAqsaCat = {};
 
   Future fetcAqsaMainCat() async {
-    isDataLoaded = false;
+    dataLoaded = false;
+    notifyListeners();
     aqsaModel = [];
     final aqsaService = AqsaService();
     final aqsaMain = await aqsaService.fetchAqsaMainCat();
     aqsaModel = aqsaMain['data'];
-    isDataLoaded = true;
+    dataLoaded = true;
     notifyListeners();
   }
 
   Future fetcAqsaSubCat(int id) async {
-    isDataLoaded = false;
+    dataLoaded = false;
     subAqsaCat[id] = [];
     final aqsaService = AqsaService();
     final aqsaMain = await aqsaService.fetchAqsaSubCats(id);
     subAqsaCat[id] = aqsaMain['data'];
-    isDataLoaded = true;
+    dataLoaded = true;
     notifyListeners();
   }
 }

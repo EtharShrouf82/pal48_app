@@ -3,6 +3,7 @@ import 'package:pal48/components/main_app_cat.dart';
 import 'package:pal48/components/slider_carousel.dart';
 import 'package:pal48/constants/constants.dart';
 import 'package:pal48/providers/article_provider.dart';
+import 'package:pal48/pages/gaza/components/gaza_image.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -60,6 +61,9 @@ class HomeScreen extends StatelessWidget {
                 slivers: [
                   const SliverToBoxAdapter(
                     child: SliderCarousel(),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: GazaImage(),
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.symmetric(

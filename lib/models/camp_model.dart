@@ -1,3 +1,4 @@
+import 'package:pal48/models/attachment_model.dart';
 import 'package:pal48/models/photo_model.dart';
 
 class CampModel {
@@ -5,6 +6,7 @@ class CampModel {
   final String title;
   final String? desc, img, country, city, result;
   final List<PhotoModel>? images;
+  final List<AttachmentModel>? attachments;
   CampModel({
     required this.id,
     required this.title,
@@ -14,6 +16,7 @@ class CampModel {
     this.country,
     this.city,
     this.result,
+    this.attachments,
   });
   factory CampModel.fromJson(Map<String, dynamic> jsonRes) {
     List<PhotoModel> images = List<PhotoModel>.from(
@@ -21,7 +24,11 @@ class CampModel {
         (model) => PhotoModel.fromJson(model),
       ),
     );
-
+    List<AttachmentModel> attachments = List<AttachmentModel>.from(
+      jsonRes['attachments'].map(
+        (model) => AttachmentModel.fromJson(model),
+      ),
+    );
     return CampModel(
       id: jsonRes['id'] as int,
       title: jsonRes['title'] as String,
@@ -31,6 +38,7 @@ class CampModel {
       city: jsonRes['city'] as String?,
       result: jsonRes['result'] as String?,
       images: images,
+      attachments: attachments,
     );
   }
 }

@@ -34,76 +34,90 @@ class PlacePage extends StatelessWidget {
           follow: 6,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            MultiSelect(
-              initialValue: placeProvider.placeMyActivities,
-              onSaved: (value) {
-                if (value.length > 0) {
-                  placeProvider.fetchPlaces(
-                    withClear: true,
-                    country: value,
-                  );
-                } else {
-                  placeProvider.placePage = 1;
-                  placeProvider.placeModel = [];
-                  placeProvider.fetchPlaces();
-                }
-              },
-            ),
-            const SizedBox(
-              height: defaultPadding,
-            ),
-            Expanded(
-              child: AnimationLimiter(
-                child: SmartRefresher(
-                  enablePullDown: true,
-                  enablePullUp: true,
-                  controller: placeProvider.refreshPlaceController,
-                  onRefresh: onPlaceRefresh,
-                  onLoading: onPlaceLoading,
-                  physics: const BouncingScrollPhysics(),
-                  header: const WaterDropHeader(
-                    waterDropColor: primaryColor,
-                  ),
-                  footer:
-                      const ClassicFooter(loadStyle: LoadStyle.ShowWhenLoading),
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 14,
-                        crossAxisCount: 2,
-                        childAspectRatio: 1 / 1.3,
-                      ),
-                      itemCount: placeProvider.placeModel.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return AnimationConfiguration.staggeredList(
-                          position: index,
-                          duration: const Duration(milliseconds: 375),
-                          child: SlideAnimation(
-                            verticalOffset: 50.0,
-                            child: FadeInAnimation(
-                              child: PlaceCard(
-                                id: placeProvider.placeModel[index].id,
-                                img: placeProvider.placeModel[index].img,
-                                title: placeProvider.placeModel[index].title,
-                                description:
-                                    placeProvider.placeModel[index].desc,
-                                city: placeProvider.placeModel[index].city,
-                                images: placeProvider.placeModel[index].images,
-                              ),
-                            ),
+      body: SafeArea(
+        child: placeProvider.placeModel.isNotEmpty
+            ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    MultiSelect(
+                      initialValue: placeProvider.placeMyActivities,
+                      onSaved: (value) {
+                        if (value.length > 0) {
+                          placeProvider.fetchPlaces(
+                            withClear: true,
+                            country: value,
+                          );
+                        } else {
+                          placeProvider.placePage = 1;
+                          placeProvider.placeModel = [];
+                          placeProvider.fetchPlaces();
+                        }
+                      },
+                    ),
+                    const SizedBox(
+                      height: defaultPadding,
+                    ),
+                    Expanded(
+                      child: AnimationLimiter(
+                        child: SmartRefresher(
+                          enablePullDown: true,
+                          enablePullUp: true,
+                          controller: placeProvider.refreshPlaceController,
+                          onRefresh: onPlaceRefresh,
+                          onLoading: onPlaceLoading,
+                          physics: const BouncingScrollPhysics(),
+                          header: const WaterDropHeader(
+                            waterDropColor: primaryColor,
                           ),
-                        );
-                      }),
+                          footer: const ClassicFooter(
+                              loadStyle: LoadStyle.ShowWhenLoading),
+                          child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisSpacing: 15,
+                                mainAxisSpacing: 14,
+                                crossAxisCount: 2,
+                                childAspectRatio: 1 / 1.3,
+                              ),
+                              itemCount: placeProvider.placeModel.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return AnimationConfiguration.staggeredList(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 375),
+                                  child: SlideAnimation(
+                                    verticalOffset: 50.0,
+                                    child: FadeInAnimation(
+                                      child: PlaceCard(
+                                        id: placeProvider.placeModel[index].id,
+                                        img:
+                                            placeProvider.placeModel[index].img,
+                                        title: placeProvider
+                                            .placeModel[index].title,
+                                        description: placeProvider
+                                            .placeModel[index].desc,
+                                        city: placeProvider
+                                            .placeModel[index].city,
+                                        images: placeProvider
+                                            .placeModel[index].images,
+                                        attachments: placeProvider
+                                            .placeModel[index].attachments,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            : const Center(
+                child: CircularProgressIndicator(
+                  color: primaryColor,
                 ),
               ),
-            )
-          ],
-        ),
       ),
     );
   }

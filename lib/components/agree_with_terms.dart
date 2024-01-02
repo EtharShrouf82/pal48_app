@@ -1,9 +1,6 @@
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:pal48/constants/constants.dart';
-import 'package:provider/provider.dart';
-
-import '../providers/contact_us_provider.dart';
+import 'package:pal48/exports/exports.dart';
 
 class AgreeWithTerms extends StatelessWidget {
   const AgreeWithTerms({super.key});
@@ -16,7 +13,7 @@ class AgreeWithTerms extends StatelessWidget {
       children: [
         Text.rich(
           TextSpan(
-            text: "أوافق على",
+            text: translation(context).iAgree,
             children: [
               TextSpan(
                 recognizer: TapGestureRecognizer()
@@ -26,14 +23,14 @@ class AgreeWithTerms extends StatelessWidget {
                         : null;
                     Navigator.pushNamed(context, '/terms');
                   },
-                text: " سياسة الإستخدام ",
+                text: ' ${translation(context).terms} - ',
                 style: const TextStyle(
                   color: primaryColor,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const TextSpan(
-                text: "و سياسة الخصوصية.",
+              TextSpan(
+                text: ' ${translation(context).privacyScreen} .',
               ),
             ],
           ),

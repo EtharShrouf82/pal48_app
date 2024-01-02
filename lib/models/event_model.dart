@@ -1,3 +1,4 @@
+import 'package:pal48/models/attachment_model.dart';
 import 'package:pal48/models/photo_model.dart';
 
 class EventModel {
@@ -5,6 +6,7 @@ class EventModel {
   final String title, inDate, description;
   final String? img, city;
   final List<PhotoModel>? images;
+  final List<AttachmentModel>? attachments;
   EventModel({
     required this.id,
     required this.title,
@@ -14,11 +16,17 @@ class EventModel {
     this.city,
     required this.description,
     this.images,
+    this.attachments,
   });
   factory EventModel.fromJson(Map<String, dynamic> json) {
     List<PhotoModel> images = List<PhotoModel>.from(
       json['images'].map(
         (model) => PhotoModel.fromJson(model),
+      ),
+    );
+    List<AttachmentModel> attachments = List<AttachmentModel>.from(
+      json['attachments'].map(
+        (model) => AttachmentModel.fromJson(model),
       ),
     );
     return EventModel(
@@ -30,6 +38,7 @@ class EventModel {
       city: json['city'] as String?,
       description: json['description'] as String,
       images: images,
+      attachments: attachments,
     );
   }
 }

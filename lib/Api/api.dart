@@ -1,10 +1,25 @@
+import 'package:pal48/helpers/get_locale.dart';
+
 class Api {
   static getSegmentValue() async {
-    Api.segment = '?api_password=eth_pal48ps&lang=ar';
+    String lng = 'ar';
+    await getLocale().then((locale) {
+      if (locale.toString() == 'en') {
+        lng = 'en';
+      } else {
+        lng = 'ar';
+      }
+      return lng;
+    });
+    Api.segment = '?api_password=eth_pal48ps&lang=$lng';
   }
 
+  // static getSegmentValue() async {
+  //   Api.segment = '?api_password=eth_pal48ps&lang=ar';
+  // }
+
   static String url = "https://www.pal48.ps";
-  // static String url = "http://pal48.test";
+  // static String url = "http://pal.test";
   // static String url = "http://10.0.2.2:8000";
 
   static String apiUrl = '$url/api';
@@ -65,6 +80,17 @@ class Api {
 
   static String getSubAqsaCat(id) {
     return "${Api.apiUrl}/aqsa/$id/${Api.segment}";
+  }
+
+  static String getTags() {
+    return "${Api.apiUrl}/getTags${Api.segment}";
+  }
+
+  static String getGaza(int page, id) {
+    if (id == 0) {
+      return "${Api.apiUrl}/getGaza${Api.segment}&page=${page.toString()}";
+    }
+    return "${Api.apiUrl}/getGaza/$id${Api.segment}&page=${page.toString()}";
   }
 
   static String getVideos(int page) {

@@ -5,10 +5,10 @@ import '../../../constants/constants.dart';
 
 class ArticleImagesSlider extends StatefulWidget {
   const ArticleImagesSlider({
-    Key? key,
+    super.key,
     required this.images,
     this.title,
-  }) : super(key: key);
+  });
 
   final List<String> images;
   final String? title;

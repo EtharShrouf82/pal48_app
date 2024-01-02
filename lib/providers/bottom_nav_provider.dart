@@ -8,4 +8,10 @@ class BottomBarProvider extends ChangeNotifier {
     currentPage = index;
     notifyListeners();
   }
+
+  String lang = "";
+  Future<void> changeLang(locale) async {
+    lang = locale;
+    notifyListeners();
+  }
 }

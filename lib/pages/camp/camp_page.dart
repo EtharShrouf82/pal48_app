@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pal48/Api/Api.dart';
 import 'package:pal48/components/camp_card.dart';
 import 'package:pal48/components/page_appbar.dart';
 import 'package:pal48/constants/constants.dart';
-import 'package:pal48/providers/camps_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:pal48/exports/exports.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'components/multi_select.dart';
@@ -27,7 +25,7 @@ class CampPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: PageAppBar(
-          title: 'المخيمات الفلسطينية',
+          title: translation(context).palestiniancamps,
           share: '${Api.url}/camps',
           search: true,
           follow: 7,

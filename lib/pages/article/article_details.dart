@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:pal48/Api/Api.dart';
 import 'package:pal48/components/add_review.dart';
 import 'package:pal48/components/article_images.dart';
 import 'package:pal48/components/article_info.dart';
 import 'package:pal48/components/comment_box.dart';
+import 'package:pal48/components/download_button.dart';
 import 'package:pal48/components/video_player.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/exports/exports.dart';
+import 'package:pal48/helpers/open_link.dart';
 import 'package:pal48/models/photo_model.dart';
 import 'package:pal48/pages/article/components/article_details_appbar.dart';
-import 'package:pal48/providers/article_provider.dart';
-import 'package:provider/provider.dart';
 
 import 'components/article_map.dart';
 
@@ -22,6 +22,7 @@ class ArticleDetails extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final int id = args['id'];
     final List? images = args['images']!;
+    final List? attachments = args['attachments']!;
     final String? img = args['img'];
     final String title = args['title'];
     final String desc = args['desc'];
@@ -59,6 +60,18 @@ class ArticleDetails extends StatelessWidget {
             const SliverToBoxAdapter(
               child: SizedBox(height: defaultPadding),
             ),
+            attachments!.isNotEmpty
+                ? SliverToBoxAdapter(
+                    child: Column(
+                      children: attachments.map((e) {
+                        return DownloadButton(
+                          url: Api.url + e.filename,
+                          desc: e.desc != null ? e.desc! : title,
+                        );
+                      }).toList(),
+                    ),
+                  )
+                : const SliverToBoxAdapter(child: SizedBox()),
             images!.isNotEmpty
                 ? Directionality(
                     textDirection: TextDirection.ltr,
@@ -98,7 +111,9 @@ class ArticleDetails extends StatelessWidget {
                             children: articleProvider.commentArray.map((e) {
                               return CommentBox(
                                 name: e.name,
+                                reply: e.reply,
                                 comment: e.comment,
+                                updatedAt: e.updatedAt,
                                 time: e.date,
                               );
                             }).toList(),
@@ -118,8 +133,8 @@ class ArticleDetails extends StatelessWidget {
               child: ReviewForm(
                 model: 'article',
                 id: id,
-                comment: 'التعليق',
-                title: 'شاركنا برأيك',
+                comment: translation(context).comment,
+                title: translation(context).shareYourOpinion,
                 onPressed: () {},
               ),
             ),

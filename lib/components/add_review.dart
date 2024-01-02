@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pal48/components/agree_with_terms.dart';
 import 'package:pal48/components/text_form_field.dart';
 import 'package:pal48/constants/constants.dart';
+import 'package:pal48/helpers/get_locale.dart';
 import 'package:pal48/providers/add_comment_provider.dart';
 import 'package:pal48/providers/device_token_provider.dart';
 import 'package:pal48/services/add_message_service.dart';
@@ -54,7 +55,7 @@ class ReviewForm extends StatelessWidget {
                 validationMessage: '',
                 maxLines: 1,
                 prefixIcon: Icons.person,
-                labelTxt: 'الإسم - إختياري',
+                labelTxt: translation(context).optionalName,
                 errorMsg: '',
                 textAlign: TextAlign.right,
               ),
@@ -66,7 +67,7 @@ class ReviewForm extends StatelessWidget {
                 validationMessage: '',
                 maxLines: 1,
                 prefixIcon: Icons.email,
-                labelTxt: 'البريد الإلكتروني - إختياري',
+                labelTxt: translation(context).optionalEmail,
                 errorMsg: '',
                 textAlign: TextAlign.left,
               ),
@@ -77,12 +78,12 @@ class ReviewForm extends StatelessWidget {
                 controller: commentProvider.message,
                 textInputType: TextInputType.text,
                 validationNumber: 20,
-                validationMessage:
-                    'نص الرسالة يجب على الأقل أن يحتوي على 30 حرف',
+                maxLength: 400,
+                validationMessage: translation(context).messageAtLeast,
                 maxLines: 4,
                 prefixIcon: Icons.message,
-                labelTxt: 'نص الرسالة',
-                errorMsg: 'الرجاء إدخال نص الرسالة',
+                labelTxt: translation(context).comment,
+                errorMsg: translation(context).commentMsg,
                 textAlign: TextAlign.right,
               ),
               const AgreeWithTerms(),
@@ -109,7 +110,12 @@ class ReviewForm extends StatelessWidget {
                             id,
                           );
                         },
-                        child: const Text("إضافة التعليق"),
+                        child: Text(
+                          translation(context).addComment,
+                          style: kPragraphTextStyle.copyWith(
+                            color: Theme.of(context).textTheme.bodyLarge!.color,
+                          ),
+                        ),
                       ),
               ),
               const SizedBox(
@@ -135,7 +141,7 @@ class ReviewForm extends StatelessWidget {
     }
     FocusScope.of(context).unfocus();
     formKey.currentState!.save();
-    addCommentProvider.changeLoadingStatus();
+    addCommentProvider.inSendLoading();
     await Future.delayed(const Duration(milliseconds: 100), () {
       sendMessageClass
           .addComment(
@@ -152,8 +158,8 @@ class ReviewForm extends StatelessWidget {
             barrierDismissible: false,
             context: context,
             artDialogArgs: ArtDialogArgs(
-              title: "تم إضافة التعليق بنجاح",
-              confirmButtonText: "إغلاق",
+              title: translation(context).successComment,
+              confirmButtonText: translation(context).close,
               type: ArtSweetAlertType.success,
             ),
           );
@@ -163,10 +169,10 @@ class ReviewForm extends StatelessWidget {
 
           if (response.isTapConfirmButton) {
             addCommentProvider.emptyField();
+            addCommentProvider.commentSent();
           }
         }
       });
-      addCommentProvider.changeLoadingStatus();
     });
   }
 }

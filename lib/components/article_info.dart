@@ -5,10 +5,10 @@ import '../constants/constants.dart';
 
 class ArticleInfo extends StatelessWidget {
   const ArticleInfo({
-    Key? key,
+    super.key,
     this.title,
     this.description,
-  }) : super(key: key);
+  });
 
   final String? title;
   final String? description;

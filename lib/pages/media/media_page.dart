@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pal48/Api/api.dart';
 import 'package:pal48/components/page_appbar.dart';
 import 'package:pal48/components/video_player.dart';
 import 'package:pal48/constants/constants.dart';
-import 'package:pal48/providers/video_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:pal48/exports/exports.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class MediaPage extends StatelessWidget {
@@ -26,7 +24,7 @@ class MediaPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: PageAppBar(
-          title: 'مكتبة الوسائط',
+          title: translation(context).medialLibrary,
           share: '${Api.url}/media',
         ),
       ),

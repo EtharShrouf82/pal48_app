@@ -1,16 +1,13 @@
 import 'package:clipboard/clipboard.dart';
-import 'package:flutter/material.dart';
 import 'package:pal48/Api/api.dart';
 import 'package:pal48/components/html_card.dart';
 import 'package:pal48/components/page_appbar.dart';
-import 'package:pal48/providers/contact_us_provider.dart';
-import 'package:pal48/providers/device_token_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:pal48/exports/exports.dart';
 
 import '../../constants/constants.dart';
 
 class PrivacyPage extends StatelessWidget {
-  const PrivacyPage({Key? key}) : super(key: key);
+  const PrivacyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,7 @@ class PrivacyPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: PageAppBar(
-          title: 'سياسة الخصوصية',
+          title: translation(context).privacyScreen,
           share: '${Api.url}/app',
         ),
       ),
